@@ -1,4 +1,3 @@
-
 /** 
 
 🇫‌🇱‌🇦‌🇸‌🇭‌-🇲‌🇩‌ 
@@ -13,40 +12,33 @@
  **/
 
 
+const {france} = require('../framework/france');
+var gis = require('g-i-s');
 
 
+france({
+  nomCom: "img",
+  categorie: "Search",
+  reaction: "📷"
+},
+async (dest, zk, commandeOptions) => {
+  const { repondre, ms, arg } = commandeOptions;
 
-
-
-
-const {france}=require("../framework/france")
-
-
-
-
-
-
-
-france({nomCom:"reboot",categorie:"Mods",reaction:"👨🏿‍💼"},async(dest,z,com)=>{
-
-
-  
-const{repondre,ms,dev,superUser}=com;
-
-  if(!superUser)
-  {
-    return repondre("This command is for owner only");
+  if (!arg[0]) {
+    repondre('which image ? !');
+    return;
   }
 
-  const {exec}=require("child_process")
+  const searchTerm = arg.join(" ");
+  //repondre("termes " +searchTerm);
+  gis(searchTerm,envoiImage);
 
-    repondre("*Rebooting...*");
+  function envoiImage(e,r)
+   {
+        if(e){repondre("oups une error ")}else{for(var a=0;a<5;a++){zk.sendMessage(dest,{image:{url:r[a].url}},{quoted:ms});}}
+    
+   }
 
-  exec("pm2 restart all");
-  
-
-  
-
-
-
-})
+ //gis(searchTerm,envoiImage);
+      
+});

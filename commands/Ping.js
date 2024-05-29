@@ -1,4 +1,3 @@
-
 /** 
 
 🇫‌🇱‌🇦‌🇸‌🇭‌-🇲‌🇩‌ 
@@ -19,34 +18,28 @@
 
 
 
-const {france}=require("../framework/france")
 
 
 
+const { france } = require("../framework/france");
+const moment = require("moment-timezone");
+const { default: axios } = require('axios');
+//const conf = require('../set');
 
 
+france({ nomCom: 'ping',
+    desc: 'To check ping',
+    Categorie: 'General',
+    reaction: '🚨', 
+    fromMe: 'true', 
 
-
-france({nomCom:"reboot",categorie:"Mods",reaction:"👨🏿‍💼"},async(dest,z,com)=>{
-
-
-  
-const{repondre,ms,dev,superUser}=com;
-
-  if(!superUser)
-  {
-    return repondre("This command is for owner only");
+       
+  },
+  async (dest, zk, commandeOptions) => {
+    const { ms, arg, repondre } = commandeOptions;
+    const { start} = new Date().getTime()
+    return repondre('*Pong!!*\n ```' + 2000 + '``` *ms*') 
+    const { end } = new Date().getTime()
+    await zok.sendMessage('*Pong!*\n ```' + (end - start) + '``` *ms*')
   }
-
-  const {exec}=require("child_process")
-
-    repondre("*Rebooting...*");
-
-  exec("pm2 restart all");
-  
-
-  
-
-
-
-})
+)
