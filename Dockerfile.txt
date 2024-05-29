@@ -9,8 +9,8 @@ RUN apt-get update && \
   npm i pm2 -g && \
   rm -rf /var/lib/apt/lists/*
   
-RUN git clone https://github.com/shenubabah/Rush-testing.git  /root/Rush-testing
-WORKDIR /root/Rush-testing/
+RUN git clone https://github.com/shenubabah/Rush-testing.git  /root/flash
+WORKDIR /root/flash/
 
 
 COPY package.json .
